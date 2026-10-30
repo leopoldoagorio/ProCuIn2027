@@ -1,0 +1,194 @@
+\documentclass[a4paper,11pt,spanish]{article}
+
+\textwidth 18.5cm
+\textheight 26cm
+\topmargin -2cm
+\oddsidemargin -1.5cm
+\parskip .3em
+\parindent 0cm
+
+%your favourite packages here
+\usepackage[spanish]{babel}
+% \usepackage{lineno}
+% \usepackage{mathptmx}
+%\usepackage{psfrag,graphicx}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsfonts}
+\usepackage{bm}
+%\usepackage{bbm}
+\usepackage{color}
+\usepackage{latexsym}
+\usepackage{epstopdf}
+\usepackage{color}
+%\usepackage{times}
+
+\usepackage{psfrag,graphicx} 
+%\usepackage{picins} 
+\usepackage{natbib}
+\usepackage{epstopdf}\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `basename
+#1 .tif`.png}
+%\usepackage{dsfont}
+%\usepackage{mathtools}
+
+\definecolor{mygrey}{gray}{0.35}
+\definecolor{myblue}{rgb}{0.2,0.2,0.8}
+\definecolor{myzard}{cmyk}{0,0,0.05,0}
+\definecolor{mywhite}{rgb}{1,1,1}
+\definecolor{myred}{rgb}{1,0.,0.3}
+
+\def \barl {\begin{array}{rl}} 
+\def \ea {\end{array}}
+%\definecolor{myblue}{named}{MidnightBlue}
+\usepackage[colorlinks=true,citecolor=myblue,linkcolor=myred]{hyperref}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\ba{\begin{align}}
+\def\enda{\end{align}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\bs#1{\boldsymbol{#1}}
+\def\txt#1{\textrm{#1}}
+
+\newcommand{\eq}[1]{Eq.\;(\ref{#1})}
+
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\C{{\mathbb{C}}} \def\F{{\mathbb{F}}}
+\def\N{{\mathbb{N}}} \def\Q{{\mathbb{Q}}}
+\def\R{{\mathbb{R}}} \def\Z{{\mathbb{Z}}}
+\def\cH{{\mathcal H}}
+\def\bfsigma{\boldsymbol{\sigma}}
+\def\bfmu{\boldsymbol{\mu}}
+\def\dd{\mathord{\rm d}} \def\Det{\mathop{\rm Det}}
+\def\dist{\mathop{\rm dist}} \def\ee{\mathord{\rm e}}
+\def\End{\mathord{\rm End}} \def\ev{\mathord{\rm ev}}
+\def\id{\mathord{\rm id}} \def\ii{\mathord{\rm i}}
+\def\min{\mathord{\rm min}} \def\mod{\mathord{\rm mod}}
+\def\prob{\mathord{\rm prob}}
+\def\tr{\mathop{\rm Tr}}
+\def\half{\textstyle\frac{1}{2}}
+\def\third{\textstyle\frac{1}{3}}
+\def\fourth{\textstyle\frac{1}{4}}
+
+\graphicspath{{figs/}}
+
+\newcommand{\da}{\downarrow}
+\newcommand{\ua}{\uparrow}
+
+\renewcommand{\ii}{{\rm i}}
+\renewcommand{\ee}{{\rm e}}
+
+%brackets
+ \newcommand{\ket}[1]{|#1\rangle}
+ \newcommand{\bra}[1]{\langle #1|}
+ \newcommand{\braket}[2]{\langle #1|#2\rangle}
+
+ \newcommand{\ketbra}[2]{\ket{#1}\bra{#2}}
+ \newcommand{\proj}[1]{\ketbra {#1}{#1}}
+ \newcommand{\biket}[2]{\ket{#1\;#2}}
+ \newcommand{\bibra}[2]{\bra{#1\;#2}}
+ %\newcommand{\ketbradif}[2]{\biket {#1}{#2}\bibra {#1}{#2}}
+ \newcommand{\preespacio}{\!\text{\hspace{0.2 ex}}}
+ \newcommand{\postespacio}{\!\text{\hspace{0.75 ex}}}
+
+
+% \graphicspath{{Plots/}}
+
+\begin{document}
+
+\noindent{\large \bf Procesamiento Cu\'antico de la Informaci\'on - C. Cormick, FING - 1er sem. 2025}\\
+
+\noindent{\large \bf Práctico 5 - Información cuántica 2.0 (estados mixtos, ruido, entrelazamiento, etc.)}\\
+
+\vspace{10pt}
+
+\begin{enumerate}
+\item Supongamos un sistema preparado en forma probabilística, tal que con probabilidad $p_j$ se prepara el estado $\ket{\psi_j}$. La combinación estadística resultante puede describirse por medio de la matriz densidad $\rho = \sum_j p_j \proj{\psi_j}$. Empecemos por el caso de un solo qubit.
+\begin{enumerate}
+ \item Escribir la forma matricial de $\rho$ para los siguientes estados:
+ \begin{enumerate}
+  \item $\ket{0}$ con $p_0=1/2$, $\ket{1}$ con $p_1=1/2$.
+  \item $\ket{+}$ con $p=1$.
+  \item $\ket{+}$ con $p_+=1/2$, $\ket{-}$ con $p_-=1/2$.
+ \end{enumerate}
+ Para cada uno de esos tres estados, calcular la probabilidad de obtener 0 en una medici\'on.
+
+ \item Para cada uno de esos tres estados, calcular cómo se transforma la matriz densidad si se aplica una compuerta $H$, y cuál es la probabilidad de hallar ``0'' si luego se mide.
+\end{enumerate}
+
+\item Volvamos al caso más general. Probar que:
+ \begin{enumerate}
+  \item Tr$(\rho)=1$.
+  \item $\rho^\dagger=\rho$ (lo cual implica que es diagonalizable con autovalores reales).
+  \item los autovalores de $\rho$ son mayores o iguales que cero.
+  \item $\rho^2 =\rho$ si y s\'olo si el estado es puro.
+\end{enumerate}
+
+
+\item Ahora retomamos el caso particular de un solo qubit.
+\begin{enumerate}
+ \item Usando las propiedades que conocemos, mostrar que cualquier matriz densidad $\rho$ de un qubit se
+puede escribir en la forma 
+$\rho = 1/2\, (\mathbb{I} + a_x X + a_y Y + a_z Z)$, donde $\vec a$ es el
+``vector de Bloch'', y $X, Y, Z$ son las matrices de Pauli. Mostrar además que debe valer: i) $\vec a \in \mathbb{R}^3$, ii)~$||\vec a\,|| \leq 1$, y iii)~$||\vec a\,|| = 1$ sii el estado es puro.
+\item Escribir el vector de Bloch para los tres estados del problema 1 a).
+ \item Para cada uno de esos tres estados, calcular la entrop\'ia de von Neumann, que se define como:
+ $$S(\rho) = -\sum_k \lambda_k \log_2 \lambda_k$$
+ donde $\lambda_k$ son los autovalores de $\rho$ (tener en cuenta que ${\rm lim}_{x\to0}~x \log x=0$ con lo cual los autovalores nulos no contribuyen a la entrop\'ia).
+\end{enumerate}
+
+\item Consideremos un qubit cuyo estado se describe por la matriz densidad $\rho= (1/2)(\mathbb{I} + \vec a \cdot \vec \sigma)$, donde $\vec a$ es el vector de Bloch y esta es solo una notación compacta para la misma fórmula del problema 3. Si se aplica una compuerta unitaria $U$ sobre el estado $\rho$, el nuevo estado $\tilde \rho$ est\'a dado por la f\'ormula $\tilde \rho = U \rho\, U^\dagger$. Para el caso de un qubit, toda compuerta unitaria puede verse como una rotación del vector de Bloch en $\mathbb{R}^3$. Indicar cómo cambia el vector de Bloch luego de aplicar:
+    
+\begin{enumerate}
+     \item la compuerta $H$ (vale volver a mirar sus propiedades - Práctico 4, problema 5);
+     \item la compuerta $X$ (ídem);
+     \item la compuerta $S$ (recordatorio: apareció en el Pr\'actico 4, problema 6).
+\end{enumerate}
+
+\item Supongamos que tenemos un montón de qubits, cada uno de ellos en el mismo estado, correspondiente a la matriz densidad $\rho= (1/2)(\mathbb{I} + \vec a \cdot \vec \sigma)$.
+    
+    \begin{enumerate}
+     \item Suponer que mido un tercio de los qubits. Calcular cu\'al es la probabilidad de obtener el valor 0, que llamamos prob(0), en funci\'on de los par\'ametros $a_x, a_y, a_z$. Escribir c\'omo estimar, a partir de los resultados de las mediciones, el valor de $a_z$.
+     
+     \item Tomamos otro tercio de los qubits originales y les aplicamos una compuerta $H$. Mostrar c\'omo al medir estos qubits en el estado $\tilde\rho= H\rho H$ podemos estimar el valor de $a_x$.
+     
+     \item Explicar cuáles serían los pasos para estimar el valor de $a_y$ en forma an\'aloga al \'item pasado, realizando alguna medición sobre el tercio de qubits que nos queda.
+    \end{enumerate}
+
+    \item Considere la siguiente situación: alguien prepara un qubit en un estado puro $\ket{\psi}$. A
+continuación, lo envía a otro laboratorio. Sin embargo, en el camino la partícula sufre la acción de
+campos externos aleatorios que pueden modelarse de la siguiente manera: con
+probabilidad $p_k$, el qubit evoluciona de acuerdo a una compuerta $U_k$, con $k = 0, 1, 2, 3$ correspondiendo a los operadores de Pauli $\mathbb{I}, X, Y, Z$ ($p_0$ ser\'ia la probabilidad de que no pase nada).
+
+\begin{enumerate}
+ \item A partir del estado inicial $\ket{\psi}$, escribir cuál es la matriz densidad que corresponde al estado final.
+ \item Considerar los siguientes casos particulares: $p_x = p_y = 0$ (canal desfasante); $p_y = p_z = 0$ (canal ``bit flip''); $p_x = p_y = p_z=p/3$ (canal despolarizante). Pensar si existen estados que sean inmunes al ruido correspondiente a cada canal.
+ \item La fidelidad entre el estado original $\ket{\psi}$ y el estado transmitido $\rho$ se define como:
+ $F = \bra{\psi} \rho \ket{\psi}$. Para un estado puro arbitrario $\ket{\psi}=\alpha\ket{0}+\beta\ket{1}$, calcular la expresi\'on de la fidelidad para cada uno de los tres canales mencionados en el \'item anterior. Verificar que de haber estados inmunes al ruido, estos pueden ser transmitidos con fidelidad 1.
+ \item Si $U$ es una operaci\'on unitaria tal que $U\ket{\psi}=\ket{0}$, entonces podemos reescribir $F = \bra{0} U \rho\, U^\dagger \ket{0}$, que es la probabilidad de obtener 0 en una medici\'on luego de aplicar la operaci\'on unitaria $U$ sobre el estado $\rho$. Usar esto para implementar un canal ruidoso en el simulador IBM y verificar el valor de la fidelidad final para distintos estados de entrada.
+\end{enumerate}
+
+\item Dado un sistema de dos qubits en un estado de Bell, trazar sobre uno de los dos qubits para hallar la matriz densidad reducida del otro.
+
+Nota: Dado un sistema cu\'antico bipartito con dos partes $A$ y $B$, definimos la traza parcial sobre $B$ como una operaci\'on lineal tal que:
+  $${\rm Tr}_B(\ketbra{a_1}{a_2}\otimes\ketbra{b_1}{b_2})=\ketbra{a_1}{a_2} \,{\rm Tr}(\ketbra{b_1}{b_2}) = \ketbra{a_1}{a_2} \,\, \braket{b_2}{b_1}$$
+  donde el resultado es un operador en el espacio del sistema $A$. La traza parcial sobre $A$ se define en forma similar y el resultado es un operador en el espacio del sistema $B$.
+
+
+\item Para un estado puro $|\psi\rangle$ de un sistema bipartito compuesto por dos subsistemas $A$ y $B$, la medida de entrelazamiento más convencional es la ``entropía de entrelazamiento'':
+\begin{equation*}
+    E(|\psi\rangle\langle \psi|)= S(\mbox{Tr}_A
+    |\psi\rangle\langle\psi|) = S(\mbox{Tr}_B
+    |\psi\rangle\langle\psi|)
+\end{equation*}
+donde $S$ es la entropía de von Neumann, y $\mbox{tr}_X$ denota la traza parcial sobre el subsistema $X$ (aquí $A$ y $B$ son subsistemas de dimensiones arbitrarias, que no tienen por qué ser iguales). 
+
+\begin{enumerate}
+\item Si $A$ es un subsistema de un qubit y $B$ otro, calcular el entrelazamiento cuando comparten un estado de Bell.
+\item Mostrar que si el estado $|\psi\rangle$ es separable entonces $E=0$, y que si $\ket{\psi}=(1/\sqrt{N})\sum_{j=1}^N \ket{j}\ket{j}$, con $\{\ket{j}\}$ una base ortonormal para cada subsistema, entonces $E=\log(N)$.
+\item Mostrar por qué esta medida de entrelazamiento no sirve para estados mixtos reemplazando $\proj{\psi}$ por $\rho$, dando un ejemplo de un estado separable para el que obtendríamos $E\neq0$. Demostrar que además, para estados arbitrarios no es cierto que $S(\mbox{Tr}_A \rho) = S(\mbox{Tr}_B \rho)$ (esto s\'i es cierto para estados puros, aunque no lo vamos a demostrar).
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

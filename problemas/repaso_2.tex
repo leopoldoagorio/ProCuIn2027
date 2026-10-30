@@ -1,0 +1,171 @@
+\documentclass[a4paper,11pt,spanish]{article}
+
+\textwidth 18.5cm
+\textheight 26cm
+\topmargin -2cm
+\oddsidemargin -1.5cm
+\parskip .3em
+\parindent 0cm
+\pagestyle{empty}
+
+%your favourite packages here
+\usepackage[spanish]{babel}
+% \usepackage{lineno}
+% \usepackage{mathptmx}
+%\usepackage{psfrag,graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bm}
+%\usepackage{bbm}
+\usepackage{color}
+\usepackage{latexsym}
+\usepackage{epstopdf}
+\usepackage{color}
+%\usepackage{times}
+
+\usepackage{psfrag,graphicx}
+%\usepackage{picins}
+\usepackage{natbib}
+\usepackage{epstopdf}\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `basename
+#1 .tif`.png}
+%\usepackage{dsfont}
+%\usepackage{mathtools}
+
+\definecolor{mygrey}{gray}{0.35}
+\definecolor{myblue}{rgb}{0.2,0.2,0.8}
+\definecolor{myzard}{cmyk}{0,0,0.05,0}
+\definecolor{mywhite}{rgb}{1,1,1}
+\definecolor{myred}{rgb}{1,0.,0.3}
+
+\def \barl {\begin{array}{rl}}
+\def \ea {\end{array}}
+%\definecolor{myblue}{named}{MidnightBlue}
+\usepackage[colorlinks=true,citecolor=myblue,linkcolor=myred]{hyperref}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\ba{\begin{align}}
+\def\enda{\end{align}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\bs#1{\boldsymbol{#1}}
+\def\txt#1{\textrm{#1}}
+
+\newcommand{\eq}[1]{Eq.\;(\ref{#1})}
+
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\C{{\mathbb{C}}} \def\F{{\mathbb{F}}}
+\def\N{{\mathbb{N}}} \def\Q{{\mathbb{Q}}}
+\def\R{{\mathbb{R}}} \def\Z{{\mathbb{Z}}}
+\def\cH{{\mathcal H}}
+\def\bfsigma{\boldsymbol{\sigma}}
+\def\bfmu{\boldsymbol{\mu}}
+\def\dd{\mathord{\rm d}} \def\Det{\mathop{\rm Det}}
+\def\dist{\mathop{\rm dist}} \def\ee{\mathord{\rm e}}
+\def\End{\mathord{\rm End}} \def\ev{\mathord{\rm ev}}
+\def\id{\mathord{\rm id}} \def\ii{\mathord{\rm i}}
+\def\min{\mathord{\rm min}} \def\mod{\mathord{\rm mod}}
+\def\prob{\mathord{\rm prob}}
+\def\tr{\mathop{\rm Tr}}
+\def\half{\textstyle\frac{1}{2}}
+\def\third{\textstyle\frac{1}{3}}
+\def\fourth{\textstyle\frac{1}{4}}
+
+\graphicspath{{figs/}}
+
+\newcommand{\da}{\downarrow}
+\newcommand{\ua}{\uparrow}
+
+\renewcommand{\ii}{{\rm i}}
+\renewcommand{\ee}{{\rm e}}
+
+%brackets
+ \newcommand{\ket}[1]{|#1\rangle}
+ \newcommand{\bra}[1]{\langle #1|}
+ \newcommand{\braket}[2]{\langle #1|#2\rangle}
+
+ \newcommand{\ketbra}[2]{\ket{#1}\bra{#2}}
+ \newcommand{\proj}[1]{\ketbra {#1}{#1}}
+ \newcommand{\biket}[2]{\ket{#1\;#2}}
+ \newcommand{\bibra}[2]{\bra{#1\;#2}}
+ %\newcommand{\ketbradif}[2]{\biket {#1}{#2}\bibra {#1}{#2}}
+ \newcommand{\preespacio}{\!\text{\hspace{0.2 ex}}}
+ \newcommand{\postespacio}{\!\text{\hspace{0.75 ex}}}
+
+
+% \graphicspath{{Plots/}}
+
+\begin{document}
+
+\noindent{\large \bf Repaso 2da parte - Procesamiento Cu\'antico de la Informaci\'on - FING, 1er semestre 2025}
+
+\medskip
+
+(Son ejercicios para practicar un poco más; no cubren exhaustivamente el programa ni pretenden corresponder a un simulacro de parcial.)
+
+\medskip
+
+\begin{enumerate}
+%
+%  \item Probar que $HY H = -Y$, donde $H$ es la compuerta de Hadamard. Escribir los estados estabilizados por $Y$ y por $-Y$, y verificar que la compuerta de Hadamard los intercambia entre s\'i. (Recordatorio: una compuerta ``estabiliza'' un estado cuando este estado es autoestado con autovalor +1 de esa compuerta.)
+%  \medskip
+%
+  \item Probar que en un sistema de dos qubits, dada una compuerta de un qubit $U$ y definiendo $\tilde U = e^{i\varphi}U$, la compuerta $C$-$U$ ($U$ controlado) no es equivalente a $C$-$\tilde U$, a menos que sea $\tilde U = U$ ($\varphi = 2k\pi, k \in \mathbb{Z}$).\\
+  {\it Recordatorio: dos compuertas son equivalentes cuando su efecto es el mismo a menos de una fase global. Por ejemplo: como compuerta, $Z$ es equivalente a $-Z$.}
+  \medskip
+
+  \item Si llamamos $U_F$ a la compuerta que implementa la transformada de Fourier, calcular c\'omo act\'uan sobre la base computacional las compuertas $U_F^2$ y $U_F^4$. Conociendo esto, indicar los posibles autovalores de $U_F$.
+%  \medskip
+
+  \item De las siguientes matrices, una es una posible compuerta, otra es una posible matriz densidad, y dos no pueden ser ni lo uno ni lo otro.
+  $$
+  A=\frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+   1 & -1\\ 1 & 1
+  \end{pmatrix}
+  \quad
+  \quad
+  B=\frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+   1 & 1\\ 1 & 1
+  \end{pmatrix}
+  \quad
+  \quad
+  C=\frac{1}{2}
+  \begin{pmatrix}
+   1 & -1\\ 1 & 1
+  \end{pmatrix}
+  \quad
+  \quad
+  D=\frac{1}{2}
+  \begin{pmatrix}
+   1 & 1\\ 1 & 1
+  \end{pmatrix}
+   $$
+   \begin{enumerate}
+    \item Indicar cuál es cuál y por qué.
+    \item Para la matriz que puede representar a una matriz densidad, indicar las probabilidades de medir 0 y 1, y calcular la pureza del estado.
+    \item Para la matriz que puede corresponder a una compuerta, indicar cómo obtenerla componiendo $H, X, Y, Z$ (no hace falta usar todas).
+   \end{enumerate}
+
+  \medskip
+
+   \item Elegir uno de los cuatro estados de Bell, y mostrar que para ese estado vale $\rho = \proj{\psi}=\frac{1}{4} (I+S_1)(I+S_2)$ donde $S_1$ y $S_2$ son dos estabilizadores no triviales de ese estado (vale hacerlo escribiendo las matrices explícitamente con la compu; también se puede hacer usando autovalores y sus subespacios asociados).
+  \medskip
+
+  \item Dado un sistema cu\'antico bipartito con dos partes $A$ y $B$:
+
+  \begin{enumerate}
+   \item Mostrar que si se tiene un estado mixto producto, $\rho_{AB} = \rho_A \otimes \rho_B$, la traza parcial sobre $B$ de $\rho_{AB}$ es igual a $\rho_A$.
+   \item Tomamos ahora el caso en que el sistema $A$ tiene dimensi\'on arbitraria, pero $B$ es un qubit.
+
+   Consideramos un estado de la forma especial $\rho_{AB} = p_1\, \rho_A^{(1)} \otimes \proj{0}_A + p_2\, \rho_A^{(2)} \otimes \proj{1}_B$, donde $p_1, p_2 \in [0,1]$ con $p_1+p_2=1$ y $\rho_A^{(j)}$ son dos matrices densidad del sistema $A$. Indicar cu\'ando este estado es puro, cu\'ando es producto y cu\'ando entrelazado.
+   \item Hallar ahora la traza parcial sobre $B$ del estado anterior. Analizar en qu\'e casos el estado resultante para $A$ corresponde a un estado puro o a un estado m\'aximamente mixto.
+  \end{enumerate}
+  \medskip
+
+%  \item En un sistema de dos qubits, elegir un estabilizador correspondiente a aplicar alguna de las matrices de Pauli sobre uno de los dos qubits (por ejemplo, $I\otimes Y$) y mostrar c\'omo se transforma al aplicar una compuerta $CZ$, usando $S'_j = U S_j U^\dagger$, con $U$ el $CZ$. Verificar que esta transformaci\'on lleva a otros operadores del grupo de Pauli.
+
+\end{enumerate}
+
+\end{document}

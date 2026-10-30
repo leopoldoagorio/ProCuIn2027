@@ -1,0 +1,171 @@
+\documentclass[a4paper,11pt,spanish]{article}
+
+\textwidth 18.5cm
+\textheight 26cm
+\topmargin -2cm
+\oddsidemargin -1.5cm
+\parskip .3em
+\parindent 0cm
+
+%your favourite packages here
+\usepackage[spanish]{babel}
+% \usepackage{lineno}
+% \usepackage{mathptmx}
+%\usepackage{psfrag,graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bm}
+%\usepackage{bbm}
+\usepackage{color}
+\usepackage{latexsym}
+\usepackage{epstopdf}
+\usepackage{color}
+%\usepackage{times}
+
+\usepackage{psfrag,graphicx}
+%\usepackage{picins}
+\usepackage{natbib}
+\usepackage{epstopdf}\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `basename
+#1 .tif`.png}
+%\usepackage{dsfont}
+%\usepackage{mathtools}
+
+\definecolor{mygrey}{gray}{0.35}
+\definecolor{myblue}{rgb}{0.2,0.2,0.8}
+\definecolor{myzard}{cmyk}{0,0,0.05,0}
+\definecolor{mywhite}{rgb}{1,1,1}
+\definecolor{myred}{rgb}{1,0.,0.3}
+
+\def \barl {\begin{array}{rl}}
+\def \ea {\end{array}}
+%\definecolor{myblue}{named}{MidnightBlue}
+\usepackage[colorlinks=true,citecolor=myblue,linkcolor=myred]{hyperref}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\ba{\begin{align}}
+\def\enda{\end{align}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\bs#1{\boldsymbol{#1}}
+\def\txt#1{\textrm{#1}}
+
+\newcommand{\eq}[1]{Eq.\;(\ref{#1})}
+
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\C{{\mathbb{C}}} \def\F{{\mathbb{F}}}
+\def\N{{\mathbb{N}}} \def\Q{{\mathbb{Q}}}
+\def\R{{\mathbb{R}}} \def\Z{{\mathbb{Z}}}
+\def\cH{{\mathcal H}}
+\def\bfsigma{\boldsymbol{\sigma}}
+\def\bfmu{\boldsymbol{\mu}}
+\def\dd{\mathord{\rm d}} \def\Det{\mathop{\rm Det}}
+\def\dist{\mathop{\rm dist}} \def\ee{\mathord{\rm e}}
+\def\End{\mathord{\rm End}} \def\ev{\mathord{\rm ev}}
+\def\id{\mathord{\rm id}} \def\ii{\mathord{\rm i}}
+\def\min{\mathord{\rm min}} \def\mod{\mathord{\rm mod}}
+\def\prob{\mathord{\rm prob}}
+\def\tr{\mathop{\rm Tr}}
+\def\half{\textstyle\frac{1}{2}}
+\def\third{\textstyle\frac{1}{3}}
+\def\fourth{\textstyle\frac{1}{4}}
+
+\graphicspath{{figs/}}
+
+\newcommand{\da}{\downarrow}
+\newcommand{\ua}{\uparrow}
+
+\renewcommand{\ii}{{\rm i}}
+\renewcommand{\ee}{{\rm e}}
+
+%brackets
+ \newcommand{\ket}[1]{|#1\rangle}
+ \newcommand{\bra}[1]{\langle #1|}
+ \newcommand{\braket}[2]{\langle #1|#2\rangle}
+
+ \newcommand{\ketbra}[2]{\ket{#1}\bra{#2}}
+ \newcommand{\proj}[1]{\ketbra {#1}{#1}}
+ \newcommand{\biket}[2]{\ket{#1\;#2}}
+ \newcommand{\bibra}[2]{\bra{#1\;#2}}
+ %\newcommand{\ketbradif}[2]{\biket {#1}{#2}\bibra {#1}{#2}}
+ \newcommand{\preespacio}{\!\text{\hspace{0.2 ex}}}
+ \newcommand{\postespacio}{\!\text{\hspace{0.75 ex}}}
+
+
+\begin{document}
+
+\author{C. Cormick}
+
+% \maketitle
+
+\noindent{\large \bf Procesamiento Cu\'antico de la Informaci\'on - C. Cormick, FING - 1er sem. 2025}\\
+
+\noindent{\large \bf Práctico 6 - Formalismo de estabilizadores}\\
+
+\vspace{10pt}
+
+\begin{enumerate}
+\item Considerar el problema 5b) del práctico 1. Indicar tres operadores de Pauli generalizados $S_1, S_2, S_3$ que ``estabilicen'' al estado $\ket{\psi}$ de la figura, es decir tales que $\ket{\psi}$ sea autovector de autovalor +1 de cada uno de ellos. Elegir tres operadores que determinen completamente el estado de la figura, es decir que no sean productos unos de otros. {\it Ayuda: si tenemos un estado producto, se puede elegir un estabilizador para cada qubit por separado.}
+ \medskip
+
+ \item Considerar el estado $\ket{0}$ de un qubit. Verificar que $\rho=\ketbra{0}{0}=\frac{1}{2}(I+S)$ donde $S$ es el operador de Pauli que corresponde a su estabilizador no trivial (o sea, el que no es $I$). Mostrar que lo mismo vale para el estado $\ket{-}$.
+
+ {\it Nota: No vamos a demostrarlo, pero conociendo los estabilizadores de un estado $\ket{\psi}$ se puede reconstruir la matriz densidad $\rho=\proj{\psi}$ para cualquier número de qubits.}
+
+ % todos los estados estabilizadores de 1 qubit. {\it Ayuda: son seis estados, pensar cómo es el vector de Bloch de cada uno; la idea aquí no es hacer una demostración formal sino convencerse.}
+ \medskip
+
+ \item Considerar un sistema de dos qubits, con dimensi\'on 4.
+ \begin{enumerate}
+ \item Verificar que el subespacio estabilizado por el operador $S_1=Z_1$ tiene dimensi\'on 2, escribiendo una base de este subespacio y una base del subespacio con autovalor $-1$. Verificar a continuaci\'on que el subespacio estabilizado por los dos operadores $S_1=Z_1$ y $S_2=Z_2$ tiene dimensi\'on 1, e indicar cu\'al es el estado estabilizador al que corresponde.
+ \item Repetir ahora el \'item anterior pero con $S_1=Z_1Z_2$ y $S_2=X_1X_2$.
+ \end{enumerate}
+ \medskip
+
+ \item Mostrar que si dos operadores de Pauli generalizados anticonmutan, entonces no pueden ambos estabilizar a un mismo estado $\ket{\psi}$.
+
+ {\it Nota: Como los operadores de Pauli generalizados o conmutan o anticonmutan, esto implica que dos operadores de Pauli que estabilizan un mismo estado deben conmutar entre sí.}
+ \medskip
+
+ \item Considerar el c\'odigo de Shor de correcci\'on de errores:
+ $$\ket{0} \to \frac{1}{\sqrt{8}}(\ket{000}+\ket{111})(\ket{000}+\ket{111})(\ket{000}+\ket{111})$$
+ $$\ket{1} \to \frac{1}{\sqrt{8}}(\ket{000}-\ket{111})(\ket{000}-\ket{111})(\ket{000}-\ket{111})$$
+ 
+ \begin{enumerate}
+  \item Verificar que el subespacio de estados l\'ogicos corresponde a autoestados de autovalor +1 de los siguientes operadores de Pauli generalizados: $Z_1 Z_2$, $Z_1 Z_3$, $Z_4 Z_5$, $Z_4 Z_6$, $Z_7Z_8$, $Z_7Z_9$, $X_1X_2X_3X_4X_5X_6$, $X_1X_2X_3X_7X_8X_9$.
+  \item Verificar que cada error de un qubit de la forma $X$, $Y$, o $Z$ puede ser detectado y corregido a trav\'es del cambio del conjunto de autovalores de los operadores del \'item anterior. 
+ \end{enumerate}
+ \medskip
+ 
+ \item Indicar dos estabilizadores de Pauli no triviales para cada uno de los estados de Bell.
+ \medskip
+
+ \item Supongamos que tenemos un estado $\ket{\psi}$ y un conjunto de operadores unitarios estabilizadores $S_j$ tales que $S_j \ket{\psi} = \ket{\psi}$. A continuaci\'on se aplica sobre el estado una compuerta descripta por una operaci\'on unitaria $U$, que transforma el estado seg\'un $\ket{\psi}\to \ket{\psi'} = U\ket{\psi}$. Demostrar que los operadores $S'_j = U S_j U^\dagger$ estabilizan a $\ket{\psi'}$.
+ \medskip
+
+ \item Considerando los dos problemas anteriores, volver al ejercicio 4 del práctico 2 y hallar las transformaciones entre estados de Bell a partir de las transformaciones de los respectivos estabilizadores.
+ \medskip
+ \newpage
+
+ \item Considerar el problema 4 del práctico 1. 
+
+\begin{enumerate}
+ \item Escribir el estado neblinoso $\ket{\psi}$ de la figura en notaci\'on de Dirac y en forma normalizada.
+ \item Indicar dos operadores de Pauli generalizados que estabilizan a ese estado.
+ \item Considerar las compuertas de los \'items a) y b), y mostrar c\'omo transforman a los estabilizadores, esto es: mostrar que las compuertas de a) que llevan del estado $\ket{00}$ a $\ket{\psi}$ transforman los estabilizadores de $\ket{00}$ en estabilizadores de $\ket{\psi}$, y mostrar luego c\'omo se modifican los estabilizadores de $\ket{\psi}$ al aplicar el circuito del \'item b).
+\end{enumerate}
+ \medskip
+
+ \item Mostrar que dado un cierto estado $\ket{\psi}$, el conjunto de operadores unitarios que lo estabiliza forma un grupo (en el sentido matem\'atico del t\'ermino), es decir se cumplen las siguientes propiedades:
+ \begin{enumerate}
+  \item Si $S$ estabiliza a $\ket{\psi}$, entonces $S^{-1}$ tambi\'en.
+  \item Si $S_1$ y $S_2$ estabilizan a $\ket{\psi}$, entonces tambi\'en lo hace su producto.\
+  \item La identidad estabiliza a $\ket{\psi}$.
+ \end{enumerate}
+ \medskip
+
+ \item {\bf Opcional:} Volver al problema de la paradoja de Mermin y chequear que la raz\'on por la que el estado resuelve el desaf\'io es que se trata de un autoestado de autovalor +1 de los operadores $X_1 Z_2 Z_3$, $Z_1X_2Z_3$ y $Z_1Z_2X_3$, lo cual implica un autovalor -1 para $X_1X_2X_3$ (ayuda: recordar que el estado tiene simetr\'ia de intercambio de qubits).
+
+\end{enumerate}
+
+\end{document}

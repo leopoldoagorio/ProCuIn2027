@@ -1,0 +1,224 @@
+\documentclass[a4paper,11pt,spanish]{article}
+
+\textwidth 18.5cm
+\textheight 26cm
+\topmargin -2cm
+\oddsidemargin -1.5cm
+\parskip .3em
+\parindent 0cm
+
+%your favourite packages here
+\usepackage[spanish]{babel}
+% \usepackage{lineno}
+% \usepackage{mathptmx}
+%\usepackage{sublabel}
+%\usepackage{psfrag,graphicx}
+%\usepackage{subfigure}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsfonts}
+\usepackage{bm}
+%\usepackage{bbm}
+\usepackage{color}
+%\usepackage{overpic}
+\usepackage{latexsym}
+\usepackage{epstopdf}
+\usepackage{color}
+%\usepackage{times}
+%\usepackage{stmaryrd}
+
+\usepackage{psfrag,graphicx} 
+%\usepackage{picins} 
+%\usepackage{epsf}
+\usepackage{natbib}
+\usepackage{epstopdf}\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `basename
+#1 .tif`.png}
+%\usepackage{appendix}
+%\usepackage{dsfont}
+%\usepackage{mathtools}
+
+\definecolor{mygrey}{gray}{0.35}
+\definecolor{myblue}{rgb}{0.2,0.2,0.8}
+\definecolor{myzard}{cmyk}{0,0,0.05,0}
+\definecolor{mywhite}{rgb}{1,1,1}
+\definecolor{myred}{rgb}{1,0.,0.3}
+
+\def \barl {\begin{array}{rl}} 
+\def \ea {\end{array}}
+%\definecolor{myblue}{named}{MidnightBlue}
+\usepackage{hyperref}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\ba{\begin{align}}
+\def\enda{\end{align}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\bs#1{\boldsymbol{#1}}
+\def\txt#1{\textrm{#1}}
+
+\newcommand{\eq}[1]{Eq.\;(\ref{#1})}
+
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\C{{\mathbb{C}}} \def\F{{\mathbb{F}}}
+\def\N{{\mathbb{N}}} \def\Q{{\mathbb{Q}}}
+\def\R{{\mathbb{R}}} \def\Z{{\mathbb{Z}}}
+\def\cH{{\mathcal H}}
+\def\bfsigma{\boldsymbol{\sigma}}
+\def\bfmu{\boldsymbol{\mu}}
+\def\dd{\mathord{\rm d}} \def\Det{\mathop{\rm Det}}
+\def\dist{\mathop{\rm dist}} \def\ee{\mathord{\rm e}}
+\def\End{\mathord{\rm End}} \def\ev{\mathord{\rm ev}}
+\def\id{\mathord{\rm id}} \def\ii{\mathord{\rm i}}
+\def\min{\mathord{\rm min}} \def\mod{\mathord{\rm mod}}
+\def\prob{\mathord{\rm prob}}
+\def\tr{\mathop{\rm Tr}}
+\def\half{\textstyle\frac{1}{2}}
+\def\third{\textstyle\frac{1}{3}}
+\def\fourth{\textstyle\frac{1}{4}}
+
+\graphicspath{{figs/}}
+
+\newcommand{\da}{\downarrow}
+\newcommand{\ua}{\uparrow}
+
+\renewcommand{\ii}{{\rm i}}
+\renewcommand{\ee}{{\rm e}}
+
+%brackets
+ \newcommand{\ket}[1]{|#1\rangle}
+ \newcommand{\bra}[1]{\langle #1|}
+ \newcommand{\braket}[2]{\langle #1|#2\rangle}
+
+ \newcommand{\ketbra}[2]{\ket{#1}\bra{#2}}
+ \newcommand{\proj}[1]{\ketbra {#1}{#1}}
+ \newcommand{\biket}[2]{\ket{#1\;#2}}
+ \newcommand{\bibra}[2]{\bra{#1\;#2}}
+ %\newcommand{\ketbradif}[2]{\biket {#1}{#2}\bibra {#1}{#2}}
+% \newcommand{\preespacio}{\!\text{\hspace{0.2 ex}}}
+% \newcommand{\postespacio}{\!\text{\hspace{0.75 ex}}}
+
+
+% \graphicspath{{Plots/}}
+
+\begin{document}
+
+%\title[Short Title]{Ejercicios para el curso de Introducci\'on a la \'Optica Cu\'antica}
+
+\author{C. Cormick}
+
+% \maketitle
+
+\noindent{\large \bf Procesamiento Cu\'antico de la Informaci\'on - C. Cormick, FING - 1er sem. 2025}\\
+
+\noindent{\large \bf Práctico 4 - Notación de Dirac, algoritmo de Grover, transformada de Fourier y algoritmo de factorización de Shor}\\
+
+\vspace{10pt}
+
+\begin{enumerate}
+
+ \item {\bf Paso de notación de Dirac a notaci\'on matricial}. Dado el operador que act\'ua sobre el espacio de un qubit en la forma $A=a\ketbra{0}{0} + b \ketbra{1}{1} + c \ketbra{1}{0} + d \ketbra{0}{1}$, escribir su forma matricial en la base $\{\ket{0}, \ket{1}\}$.
+
+ \item {\bf Producto interno en notación de Dirac.} Usando la expansión de los vectores en la base canónica y la definición de kets y bras, mostrar que $\braket{\xi}{\varphi} = \braket{\varphi}{\xi}^*$.
+
+ \item {\bf Notaci\'on de Dirac.} Resolver los siguientes problemas usando enteramente notaci\'on de Dirac:
+
+ \begin{enumerate}
+   \item Escribir la compuerta de Hadamard, y verificar que al elevarla al cuadrado se obtiene la identidad.
+
+   \item Escribir las compuertas $X$, $Y$ y $Z$. Escribir tambi\'en sus autovectores, y verificar que satisfacen la ecuaci\'on de autovalores como deben.
+
+   \item Verificar usando esta notación la anticonmutación de las matrices de Pauli.
+
+   \item Escribir los cuatro estados de Bell, y verificar que son ortonormales.
+
+   \item Escribir la forma de la compuerta $CNOT$, y verificar que puede escribirse como $\proj{0}\otimes\mathbb{I} + \proj{1} \otimes X$.
+
+%   \item Escribir la forma del proyector sobre un estado cu\'antico arbitrario $\ket{\psi}$ (recordar c\'omo se escrib\'ia esto en notaci\'on matricial).
+ \end{enumerate}
+
+ \item \textbf{Teleportaci\'on \textit{revisited}}. Volver al problema de teleportaci\'on. Usando notaci\'on de Dirac, verificar que el protocolo funciona para cualquier estado inicial desconocido de un qubit $\ket{\psi}=a\ket{0}+b\ket{1}$, con $a,b\in \mathbb{C}$.
+
+ \item {\bf Proyectores.} En un espacio vectorial complejo, un proyector es un operador $P$ que satisface $P^2 = P = P^\dagger$. Estos operadores en general NO corresponden a compuertas, dado que no corresponden a matrices unitarias (no son inversibles ni preservan la norma, excepto en el caso trivial $P=I$).
+ \begin{enumerate}
+  \item Mostrar que los autovalores de un proyector solo pueden ser 0 o 1 (notar que si el único autovalor es 1, entonces $P=I$; si el único autovalor es 0, entonces $P=0$).
+  \item Mostrar que si $P$ es un proyector, entonces $I-P$ tambi\'en lo es.
+  \item Mostrar que si $P$ es un proyector, entonces $I - 2P$ es una operación que puede corresponder a una compuerta. Indicar cuáles son los posibles autovalores de $I-2P$ y cuál es la degeneración de cada autovalor en relación con las propiedades de $P$.
+ \end{enumerate}
+ 
+ \item {\bf Proyectores de norma 1.}
+ \begin{enumerate}
+  \item Mostrar que dado el estado normalizado $\ket{\psi}$, el operador $P_\psi=\ket{\psi}\bra{\psi}$ es un proyector.
+  \item Considerar a modo de ejemplo un espacio de dimensi\'on 3 y escribir expl\'icitamente la forma matricial del proyector que corresponde a cada elemento de la base.
+  \item Mostrar que el efecto de $P_\psi$ es proyectar sobre el eje correspondiente al estado $\ket{\psi}$, es decir, dado un cierto estado $\ket{\xi}$, al aplicar $P_\psi$ sobre \'el las componentes paralelas a $\ket{\psi}$ se mantienen inalteradas, mientras que las componentes ortogonales a $\ket{\psi}$ se anulan.
+ \end{enumerate}
+ 
+   \item {\bf Compuertas de fase de un qubit.} La compuerta $Z$ es un caso particular de una familia de compuertas de fase de un qubit de la forma $U_\varphi = \proj{0} + e^{i\varphi} \proj{1}$. 
+  \begin{enumerate}
+   \item Mostrar que $U_\varphi$ es unitaria para un \'angulo $\varphi$ arbitrario.
+   \item Hallar los autovalores y autovectores de $U_\varphi$. 
+   \item Considerar la compuerta $S=U_{\pi/2}$ y mostrar que al elevarla al cuadrado se obtiene $Z$.
+   \item Considerar la compuerta $T=U_{\pi/4}$ y mostrar que al elevarla al cuadrado se obtiene $S$, y a la cuarta se obtiene $Z$. Nota: Cualquier operaci\'on unitaria general se puede aproximar con precisi\'on arbitraria usando solo $H$, $CNOT$, y $T$ (aunque esta implementaci\'on no es eficiente).
+  \end{enumerate}
+   Ojo! A las compuertas $S$ y $T$ se las llama a veces``$\pi/4$'' y ``$\pi/8$'' respectivamente por razones hist\'oricas poco afortunadas.
+
+  \item {\bf Sumas geométricas de fases.}
+  \begin{enumerate}
+   \item Representar en el plano complejo todos los n\'umeros de la forma $e^{2 \pi {\rm i} k /5}$ con $k=0,1,2,3,4$. Ver geom\'etricamente por qu\'e la suma de esos cinco n\'umeros debe dar cero.
+
+  \item Calcular la suma $$\sum_{j=0}^{N-1} e^{2\pi i jk/N}$$ donde $k$ y $N$ son dos números naturales arbitrarios. Ayuda: si $x\neq 1$, vale usar la expresión $$\sum_{j=0}^{N-1} x^j = \frac{1-x^N}{1-x}$$
+  \end{enumerate}
+  
+%  \newpage
+
+  \item {\bf Transformada de Fourier y an\'alisis de se\~nales}.
+  
+  El siguiente es un ejemplo de una funci\'on oscilatoria junto a su transformada de Fourier:
+
+\includegraphics[width=\textwidth]{Fourier_example.pdf}
+
+A trav\'es de la transformada podemos averiguar que la funci\'on es de la forma $f(x) = \sin(2\pi x)+0.2\sin(6\pi x+\pi/2)$ (nos muestra cu\'ales son las frecuencias que aparecen en la se\~nal, sus respectivas amplitudes y sus fases).
+\medskip
+
+La transformada usa que al multiplicar funciones tipo seno y coseno, o tipo $e^{i\alpha x}$, la integral promedia a cero cuando las frecuencias son diferentes pero no cuando son iguales (\textexclamdown esto no pretende ser una explicaci\'on rigurosa! quien quiera saber más, pregunte por material extra).
+
+Entrar a: \href{https://www.projectrhea.org/rhea/index.php/Fourier\_analysis\_in\_Music}{https://www.projectrhea.org/rhea/index.php/Fourier\_analysis\_in\_Music} y comparar la descomposici\'on de Fourier correspondiente al sonido de distintos instrumentos musicales. \textquestiondown Qué instrumento produce el ``la'' más ``limpio''? (notar que la amplitud de la nota base está representada sobre el eje vertical). \textquestiondown En qué instrumento se sienten más fuerte los armónicos?
+
+  \item {\bf Transformada de Fourier discreta.} Dado un arreglo de $N$ n\'umeros complejos $x_0,x_1,\dots,x_{N-1}$, se define su transformada de Fourier como la operaci\'on que retorna un arreglo de $N$ n\'umeros complejos $y_0,y_1,\ldots y_{N-1}$ dados por:
+ $$y_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j e^{2\pi i jk/N}$$
+ 
+ \begin{enumerate}
+   \item Considerar el caso $N=20$, y dos secuencias dada por $x_j=e^{-2\pi i m j/N}$, con $j=0,1,\ldots,N-1$, y tomando los casos $m=1$ y $m=5$. Graficar las secuencias, ya sea descomponiendo $x_j$ en sus partes reales e imaginarias o marcando los sucesivos puntos sobre el plano complejo. Calcular las transformadas de Fourier de cada secuencia e interpretar el resultado.
+
+   \item Verificar (para el caso general) que la inversa de la transformada de Fourier se obtiene cambiando $i$ por $-i$ en la transformaci\'on, es decir que vale:
+   $$x_l = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} y_k e^{-2\pi i lk/N}$$   
+ \end{enumerate}
+ 
+ \item {\bf Transformada de Fourier cu\'antica.} Es una transformaci\'on unitaria que act\'ua sobre los elementos de la ``base computacional'' en la forma:
+ $$\ket{j} \to \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i jk/N} \ket{k}$$
+ donde $j\in\{0,1,\ldots,N-1\}$. Como compuerta, se escribe:
+ $$U_F =\frac{1}{\sqrt{N}} \sum_{j,k=0}^{N-1} e^{2\pi i jk/N} \ketbra{k}{j}.$$
+
+ 
+ \begin{enumerate}
+  \item Mostrar que cuando aplico esta transformaci\'on sobre un estado general de la forma:
+ $$ \ket{\psi} = \sum_{j=0}^{N-1} x_j \ket{j}$$
+ obtengo un estado de la forma
+ $$ \ket{\tilde\psi} = \sum_{k=0}^{N-1} y_k \ket{k}$$
+ donde los elementos $y_k$ corresponden a la transformada de Fourier discreta de los $x_j$.
+ 
+\item Considerar el caso de tres qubits, y escribir expl\'icitamente la forma del circuito completo que realiza la transformada de Fourier cu\'antica. Aplicar este circuito sobre un sistema inicialmente preparado en el estado computacional $\ket{j=5}$, y verificar que el resultado sea el correcto. Implementar en el simulador IBM y corroborar que ande todo bien.
+
+ \end{enumerate}
+ 
+ \item {\bf Factorizaci\'on y per\'iodo de la exponenciaci\'on modular.} Hallar los factores del n\'umero $N=91$ usando el per\'iodo de la funci\'on $F_x(j)=x^j$ mod $N$ para distintos valores de $x\in \{2,3,\ldots,N-1\}$. Esto es:
+
+ \begin{enumerate}
+  \item Tomar un valor aleatorio de $x$ en ese rango.
+  \item Calcular (con una calculadora) el mayor divisor común entre $x$ y $N$. Si es mayor que 1, ya tienen un factor; de lo contrario, sigan al siguiente paso.
+  \item Hallar el período $r$ de la función $F_x(j)$, o sea el orden $r$ de $x$ mod $N$.
+  \item Si $r$ es impar o $(x^{r/2}+1)$ mod $N$ = 0, este valor de $x$ no sirve y hay que volver a empezar. De lo contrario, hallar los divisores comunes de $N$ y ($x^{r/2}$ mod $N \pm 1$), y verificar que se tiene una factorización de $N$.
+ \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
